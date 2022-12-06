@@ -1,23 +1,17 @@
 #!/bin/bash
 
-# config data disk only for AWS EBS
-sudo su -
-[[ `lsblk |grep xvdb` ]] && mkdir -p /data && mkfs.xfs /dev/xvdb
-echo '/dev/xvdb /data xfs defaults 0 2' >>/etc/fstab
-mount -a
-mkdir -p /data/{html,nginx_logs}
-
 # Install nginx,php
+sudo su -
 yum -y install gcc gcc-c++ autoconf automake make cmake pcre pcre-devel wget
 yum -y install openssl openssl-devel expat-devel libxml2-devel ncurses
 yum -y install ncurses-devel bison zlib-devel libtool-ltdl-devel libtool flex
 yum -y install php php-fpm php-mysqlnd unzip mariadb mariadb-devel
 cd ~ && wget http://nginx.org/download/nginx-1.22.1.tar.gz
-tar -xf nginx-1.22.1.tar.gz -C /usr/src/ && rm -rf nginx-1.22.1.tar.gz
+tar -xf nginx-1.22.1.tar.gz -C /usr/src/
 cd /usr/src/nginx-1.22.1/
 ./configure --prefix=/usr/local/nginx --user=nginx --group=nginx --with-http_ssl_module --with-http_stub_status_module
 make && make install
-[ $? -eq 0 ] && cd ~ rm -rf nginx-1.22.1.tar.gz /usr/src/nginx-1.22.1/
+[ $? -eq 0 ] && cd ~ && rm -rf nginx-1.22.1.tar.gz /usr/src/nginx-1.22.1/
 useradd -M -s /sbin/nologin nginx
 
 # config php and start service
@@ -40,5 +34,6 @@ chmod -R 777 /data/html/uc_client/data/cache
 chmod -R 777 /data/html/uc_server/data
 chown -R nginx /data/html
 chown -R nginx /data/nginx_logs
+rm -rf ~/Discuz_X3.4_SC_UTF8_20220811.zip /usr/src/discuz
 # start nginx
 /usr/local/nginx/sbin/nginx -t && /usr/local/nginx/sbin/nginx
