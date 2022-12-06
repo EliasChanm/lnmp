@@ -14,7 +14,7 @@ yum -y install php php-fpm php-mysqlnd unzip
 cd ~ && wget http://nginx.org/download/nginx-1.22.1.tar.gz
 tar -xf nginx-1.22.1.tar.gz -C /usr/src/ && rm -rf nginx-1.22.1.tar.gz
 cd /usr/src/nginx-1.22.1/
-./configure --prefix=/usr/local/nginx --user=nginx --group=nginx --with-http_ssl_module --with-http_stub_status_module --with-stream
+./configure --prefix=/usr/local/nginx --user=nginx --group=nginx --with-http_ssl_module --with-http_stub_status_module
 make && make install
 [ $? -eq 0 ] && cd ~ rm -rf nginx-1.22.1.tar.gz /usr/src/nginx-1.22.1/
 useradd -M -s /sbin/nologin nginx
