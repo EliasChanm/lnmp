@@ -25,8 +25,9 @@ sed -i 's/group = apache/group = nginx/' /etc/php-fpm.d/www.conf
 systemctl enable php-fpm --now
 
 # config nginx
-cd ~ && wget https://github.com/EliasChanm/lnmp/blob/main/nginx.conf
-/bin/cp -f nginx.conf /usr/local/nginx/conf/nginx.conf && rm -f nginx.conf
+cd ~ && wget https://github.com/EliasChanm/lnmp/archive/refs/heads/main.zip
+unzip main.zip
+/bin/cp -f lnmp-main/nginx.conf /usr/local/nginx/conf/nginx.conf && rm -rf main.zip lnmp-main
 
 # online Discuz
 cd ~ && wget http://discuz.net/down/Discuz_X3.4_SC_UTF8_20220811.zip
