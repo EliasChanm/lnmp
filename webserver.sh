@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Install nginx,php
 sudo su -
 yum -y install gcc gcc-c++ autoconf automake make cmake pcre pcre-devel wget
@@ -24,8 +26,7 @@ cd ~ && wget --content-disposition https://github.com/EliasChanm/lnmp/archive/re
 /bin/cp -f lnmp-main/nginx.conf /usr/local/nginx/conf/nginx.conf && rm -rf main.zip lnmp-main
 
 # online Discuz
-cd ~ && wget http://discuz.net/down/Discuz_X3.4_SC_UTF8_20220811.zip
-mkdir -p /usr/src/discuz
+cd ~ && wget http://discuz.net/down/Discuz_X3.4_SC_UTF8_20220811.zip && mkdir -p /usr/src/discuz
 unzip /root/Discuz_X3.4_SC_UTF8_20220811.zip -d /usr/src/discuz
 cp -r /usr/src/discuz/upload/* /usr/local/nginx/html/
 chmod -R 777 /usr/local/nginx/html/{config/,data/}
