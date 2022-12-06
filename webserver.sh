@@ -27,12 +27,12 @@ cd ~ && wget --content-disposition https://github.com/EliasChanm/lnmp/archive/re
 cd ~ && wget http://discuz.net/down/Discuz_X3.4_SC_UTF8_20220811.zip
 mkdir -p /usr/src/discuz
 unzip /root/Discuz_X3.4_SC_UTF8_20220811.zip -d /usr/src/discuz
-cp -r /usr/src/discuz/upload/* /data/html/
-chmod -R 777 /data/html/{config/,data/}
-chmod -R 777 /data/html/uc_client/data/cache
-chmod -R 777 /data/html/uc_server/data
-chown -R nginx /data/html
-chown -R nginx /data/nginx_logs
+cp -r /usr/src/discuz/upload/* /usr/local/nginx/html/
+chmod -R 777 /usr/local/nginx/html/{config/,data/}
+chmod -R 777 /usr/local/nginx/html/uc_client/data/cache
+chmod -R 777 /usr/local/nginx/html/uc_server/data
+chown -R nginx /usr/local/nginx/html
 rm -rf ~/Discuz_X3.4_SC_UTF8_20220811.zip /usr/src/discuz
+
 # start nginx
 /usr/local/nginx/sbin/nginx -t && /usr/local/nginx/sbin/nginx
