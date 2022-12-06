@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # config data disk only for AWS EBS
+sudo su -
 [[ `lsblk |grep xvdb` ]] && mkdir -p /data && mkfs.xfs /dev/xvdb
 echo '/dev/xvdb /data xfs defaults 0 2' >>/etc/fstab
 mount -a
