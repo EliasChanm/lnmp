@@ -11,7 +11,7 @@ mkdir -p /data/{html,nginx_logs}
 yum -y install gcc gcc-c++ autoconf automake make cmake pcre pcre-devel wget
 yum -y install openssl openssl-devel expat-devel libxml2-devel ncurses
 yum -y install ncurses-devel bison zlib-devel libtool-ltdl-devel libtool flex
-yum -y install php php-fpm php-mysqlnd unzip
+yum -y install php php-fpm php-mysqlnd unzip mariadb mariadb-devel
 cd ~ && wget http://nginx.org/download/nginx-1.22.1.tar.gz
 tar -xf nginx-1.22.1.tar.gz -C /usr/src/ && rm -rf nginx-1.22.1.tar.gz
 cd /usr/src/nginx-1.22.1/
