@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 # Install nginx,php
 sudo su -
 yum -y install gcc gcc-c++ autoconf automake make cmake pcre pcre-devel wget
