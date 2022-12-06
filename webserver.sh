@@ -20,7 +20,17 @@ sed -i 's/group = apache/group = nginx/' /etc/php-fpm.d/www.conf
 systemctl enable php-fpm --now
 
 # config nginx
-cd ~ && wget --content-disposition https://github.com/EliasChanm/lnmp/archive/refs/heads/main.zip && unzip main.zip
+cd ~ && wget https://github.com/EliasChanm/lnmp/archive/refs/heads/main.zip
+while :
+do
+  if [ ! -f main.zip ];then
+    rm -rf main*
+    wget https://github.com/EliasChanm/lnmp/archive/refs/heads/main.zip
+  else
+    break
+  fi
+done
+unzip main.zip
 /bin/cp -f lnmp-main/nginx.conf /usr/local/nginx/conf/nginx.conf && rm -rf main.zip lnmp-main
 
 # online Discuz
